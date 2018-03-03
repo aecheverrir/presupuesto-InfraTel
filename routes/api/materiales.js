@@ -32,7 +32,7 @@ module.exports = function (app, express) {
       Material.find({}, function (err, materiales) {
         if (err) res.send(err);
 
-        res.json(materiales);
+        res.send(materiales);
       });
     });
 

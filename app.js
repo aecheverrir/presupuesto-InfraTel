@@ -14,6 +14,13 @@ let apiRoutesMateriales = require("./routes/api/materiales")(app, express);
 let apiRoutesMO = require("./routes/api/trabajadores")(app, express);
 var app = express();
 
+app.use(function(req, res, next) {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST");
+  res.setHeader("Access-Control-Allow-Headers", "X-Requested-With,content-type, Authorization");
+  next();
+});
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -23,16 +30,18 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
-
-//Conexión a la base de datos
-mongoose.connect(config.database);
 
 app.use('/', index);
 app.use("/proyectos", apiRoutesProyectos);
 app.use("/hye", apiRoutesHyE);
 app.use("/materiales", apiRoutesMateriales);
 app.use("/mo", apiRoutesMO);
+app.use(express.static(path.join(__dirname, 'public')));
+
+//Conexión a la base de datos
+mongoose.connect(config.database);
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
