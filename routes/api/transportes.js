@@ -33,7 +33,7 @@ module.exports = function (app, express) {
       Transporte.find({}, function (err, transportes) {
         if (err) res.send(err);
 
-        res.json(transportes);
+        res.send(transportes);
       });
     });
 
@@ -46,7 +46,7 @@ module.exports = function (app, express) {
         if (err) res.send(err);
 
         // return that user
-        res.json(transporte);
+        res.send(transporte);
       });
     })
 

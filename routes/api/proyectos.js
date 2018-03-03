@@ -38,7 +38,7 @@ module.exports = function (app, express) {
       Proyecto.find({}, function (err, proyectos) {
         if (err) res.send(err);
 
-        res.json(proyectos);
+        res.send(proyectos);
       });
     });
 
@@ -51,7 +51,7 @@ module.exports = function (app, express) {
         if (err) res.send(err);
 
         // return that user
-        res.json(proyecto);
+        res.send(proyecto);
       });
     })
 
@@ -116,7 +116,7 @@ module.exports = function (app, express) {
           if (err) res.send(err);
 
           // return that user
-          res.json(items);
+          res.send(items);
         });
     });
 
@@ -128,7 +128,7 @@ module.exports = function (app, express) {
         function (err, item) {
           if (err) res.send(err);
 
-          res.json(item);
+          res.send(item);
         });
     })
 
@@ -184,7 +184,7 @@ module.exports = function (app, express) {
       Material.find({}, function (err, materiales) {
         if (err) res.send(err);
         
-        res.json(materiales);
+        res.send(materiales);
       });
     });
 
@@ -196,7 +196,7 @@ module.exports = function (app, express) {
         function(err, material) {
           if(err) res.send(err);
 
-          res.json(material);
+          res.send(material);
         }
       );
     })
@@ -249,7 +249,7 @@ module.exports = function (app, express) {
       HyE.find({}, function (err, hyes) {
         if (err) res.send(err);
             
-        res.json(hyes);
+        res.send(hyes);
       });
     });
     
@@ -261,7 +261,7 @@ module.exports = function (app, express) {
         function(err, hye) {
           if(err) res.send(err);
     
-          res.json(hye);
+          res.send(hye);
         }
       );
     })
@@ -315,7 +315,7 @@ module.exports = function (app, express) {
       Mo.find({}, function (err, trabajadores) {
         if (err) res.send(err);
         
-        res.json(trabajadores);
+        res.send(trabajadores);
       });
     });
 
@@ -327,7 +327,7 @@ module.exports = function (app, express) {
         function(err, trabajador) {
           if(err) res.send(err);
 
-          res.json(trabajador);
+          res.send(trabajador);
         }
       );
     })
@@ -381,7 +381,7 @@ module.exports = function (app, express) {
       Transporte.find({}, function (err, transportes) {
         if (err) res.send(err);
             
-        res.json(transportes);
+        res.send(transportes);
       });
     });
     
@@ -393,7 +393,7 @@ module.exports = function (app, express) {
         function(err, transporte) {
           if(err) res.send(err);
     
-          res.json(transporte);
+          res.send(transporte);
         }
       );
     })

@@ -33,7 +33,7 @@ module.exports = function (app, express) {
       HyE.find({}, function (err, hyes) {
         if (err) res.send(err);
 
-        res.json(hyes);
+        res.send(hyes);
       });
     });
 
@@ -46,7 +46,7 @@ module.exports = function (app, express) {
         if (err) res.send(err);
 
         // return that user
-        res.json(hye);
+        res.send(hye);
       });
     })
 

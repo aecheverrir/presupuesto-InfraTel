@@ -45,7 +45,7 @@ module.exports = function (app, express) {
         if (err) res.send(err);
 
         // return that user
-        res.json(material);
+        res.send(material);
       });
     })
 

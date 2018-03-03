@@ -32,7 +32,7 @@ module.exports = function (app, express) {
       Mo.find({}, function (err, trabajadores) {
         if (err) res.send(err);
 
-        res.json(trabajadores);
+        res.send(trabajadores);
       });
     });
 
@@ -45,7 +45,7 @@ module.exports = function (app, express) {
         if (err) res.send(err);
 
         // return that user
-        res.json(trabajador);
+        res.send(trabajador);
       });
     })
 
