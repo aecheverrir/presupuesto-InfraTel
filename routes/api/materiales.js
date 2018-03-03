@@ -1,8 +1,6 @@
 /* global require */
 const bodyParser = require("body-parser");
-const jwt = require("jsonwebtoken");
-const config = require("../../../config");
-const superSecret = config.secret;
+const config = require("../../config");
 const Material = require("../../models/material");
 
 module.exports = function (app, express) {
