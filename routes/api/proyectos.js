@@ -1,13 +1,12 @@
 /* global require */
 const bodyParser = require("body-parser");
-const jwt = require("jsonwebtoken");
-const config = require("../../../config");
+const config = require("../../config");
 const superSecret = config.secret;
 const Proyecto = require("../../models/proyecto");
 const Item = require("../../models/item");
-const HyE = require("../../models/herramientaYEquipoItem");
+const HyE = require("../../models/hyeItem");
 const Material = require("../../models/materialItem");
-const Mo = require("../../models/manoDeObraItem");
+const Mo = require("../../models/moItem");
 const Transporte = require("../../models/transporteItem");
 
 module.exports = function (app, express) {
