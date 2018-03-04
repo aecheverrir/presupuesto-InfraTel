@@ -3,6 +3,11 @@ import { Navbar, Nav, NavItem, } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import './App.css';
 import Material from './Material';
+import ManoObra from "./ManoObra";
+import Transporte from "./Transporte";
+import HyE from "./HerramientaYEquipo";
+//Experimento
+import {HashRouter,Switch,Route,Link} from "react-router-dom";
 
 class App extends Component {
 
@@ -13,14 +18,14 @@ class App extends Component {
           <Navbar inverse collapseOnSelect className="customNav">
             <Navbar.Header>
               <Navbar.Brand>
-                <a href="/#">Mern Stack Todo App</a>
+                <a href="/#">Presupuestos InfraTel</a>
               </Navbar.Brand>
               <Navbar.Toggle />
             </Navbar.Header>
             <Navbar.Collapse>
               <Nav>
-                <LinkContainer to={{ pathname: "/", query: {} }}>
-                  <NavItem eventKey={1}>Home</NavItem>
+                <LinkContainer to={{ pathname: "/materiales", query: {} }}>
+                  <NavItem eventKey={1}>Materiales</NavItem>
                 </LinkContainer>
               </Nav>
               <Nav pullRight>
@@ -29,6 +34,9 @@ class App extends Component {
           </Navbar>
         </header>
         <Material />
+        <ManoObra />
+        <Transporte />
+        <HyE />
       </div>
     );
   }

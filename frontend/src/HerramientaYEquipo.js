@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import { Glyphicon, Button, Modal } from 'react-bootstrap';
 import './App.css';
-import MaterialAdd from "./MaterialAdd";
-import MaterialEditForm from "./MaterialEdit"
+import HyEAdd from "./HerramientaYEquipoAdd";
+import HyEEditForm from "./HerramientaYEquipoEdit"
 
-class Material extends Component {
+class HyE extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      materiales: [],
+      hyes: [],
       show: false,
       editId: "",
       unidad: "",
@@ -20,7 +20,7 @@ class Material extends Component {
     this.componentDidMount = this.componentDidMount.bind(this);
     this.handleClose = this.handleClose.bind(this);
     this.handleShow = this.handleShow.bind(this);
-    this.editMateriales = this.editMateriales.bind(this);
+    this.editHyE = this.editHyE.bind(this);
     this.udpateCosto = this.udpateCosto.bind(this);
     this.udpateDescripcion = this.udpateDescripcion.bind(this);
     this.udpateUnidades = this.udpateUnidades.bind(this);
@@ -48,7 +48,7 @@ class Material extends Component {
   }
 
   componentDidMount() {
-    fetch("/materiales")
+    fetch("/hye")
       .then((res) => {
         if (res.status !== 200) {
           console.log("Error");
@@ -58,13 +58,13 @@ class Material extends Component {
       })
       .then((json) => {
         this.setState({
-          materiales: json
+          hyes: json
         });
       })
   }
 
-  deleteMaterial(id) {
-    fetch("/materiales/" + id, {
+  deleteHyE(id) {
+    fetch("/hye/" + id, {
       method: "DELETE"
     }).then((res) => {
       if (res.status !== 200) {
@@ -79,10 +79,10 @@ class Material extends Component {
       .then(this.componentDidMount);
   }
 
-  editMateriales(evt) {
+  editHyE(evt) {
     let id = this.state.editId;
     evt.preventDefault();
-    fetch("/materiales/" + id, {
+    fetch("/hye/" + id, {
       method: "PUT",
       body: JSON.stringify(this.state),
       headers: {
@@ -103,7 +103,7 @@ class Material extends Component {
 
   onAdd(evt) {
     evt.preventDefault();
-    fetch("/materiales", {
+    fetch("/hye", {
       method: "POST",
       body: JSON.stringify(this.state),
       headers: {
@@ -123,22 +123,22 @@ class Material extends Component {
   }
 
   render() {
-    let materiales = this.state.materiales;
+    let hyes = this.state.hyes;
     let idEditar = this.state.editId;
     return (
       <div className="Material container-fluid">
-        <h3 className="centerAlign">Materiales</h3>
-        <table className="table materialesTable">
+        <h3 className="centerAlign">Herramientas Y Equipos</h3>
+        <table className="table hyeTable">
           <thead>
             <tr><th>Descripción</th><th>Unidades</th><th>Costo Unitario</th><th className="textCenter">Editar</th><th className="textCenter">Borrar</th></tr>
           </thead>
           <tbody>
-            {materiales.map((mat) => <tr key={mat._id}>
-              <td>{mat.descripcion}</td>
-              <td>{mat.unidad}</td>
-              <td>{mat.costoUnit}</td>
-              <td className="textCenter"><Button onClick={() => this.handleShow(mat._id)} bsStyle="info" bsSize="xsmall"><Glyphicon glyph="pencil" /></Button></td>
-              <td className="textCenter"><Button onClick={() => this.deleteMaterial(mat._id)} bsStyle="danger" bsSize="xsmall"><Glyphicon glyph="trash" /></Button></td>
+            {hyes.map((hye) => <tr key={hye._id}>
+              <td>{hye.descripcion}</td>
+              <td>{hye.unidad}</td>
+              <td>{hye.costoUnit}</td>
+              <td className="textCenter"><Button onClick={() => this.handleShow(hye._id)} bsStyle="info" bsSize="xsmall"><Glyphicon glyph="pencil" /></Button></td>
+              <td className="textCenter"><Button onClick={() => this.deleteHyE(hye._id)} bsStyle="danger" bsSize="xsmall"><Glyphicon glyph="trash" /></Button></td>
             </tr>)
             }
           </tbody>
@@ -149,17 +149,17 @@ class Material extends Component {
               <Modal.Title>Modal heading</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-              <MaterialEditForm idi={idEditar} udpateUni={this.udpateUnidades} udpateDes={this.udpateDescripcion} udpateCost={this.udpateCosto} editarM={this.editMateriales} />
+              <HyEEditForm idi={idEditar} udpateUni={this.udpateUnidades} udpateDes={this.udpateDescripcion} udpateCost={this.udpateCosto} editarHyE={this.editHyE} />
             </Modal.Body>
             <Modal.Footer>
               <Button onClick={this.handleClose}>Close</Button>
             </Modal.Footer>
           </Modal>
         </div>
-        <MaterialAdd udpateUni={this.udpateUnidades} udpateDes={this.udpateDescripcion} udpateCost={this.udpateCosto} onAdd={this.onAdd} />
+        <HyEAdd udpateUni={this.udpateUnidades} udpateDes={this.udpateDescripcion} udpateCost={this.udpateCosto} onAdd={this.onAdd} />
       </div>
     );
   }
 }
 
-export default Material;
+export default HyE;

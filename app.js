@@ -12,14 +12,15 @@ let apiRoutesProyectos = require("./routes/api/proyectos")(app, express);
 let apiRoutesHyE = require("./routes/api/herramientasYEquipos")(app, express);
 let apiRoutesMateriales = require("./routes/api/materiales")(app, express);
 let apiRoutesMO = require("./routes/api/trabajadores")(app, express);
+let apiRoutesTransportes = require("./routes/api/transportes")(app, express);
 var app = express();
 
-app.use(function(req, res, next) {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
-  res.setHeader("Access-Control-Allow-Headers", "X-Requested-With,content-type, Authorization");
-  next();
-});
+// app.use(function(req, res, next) {
+//   res.setHeader("Access-Control-Allow-Origin", "*");
+//   res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+//   res.setHeader("Access-Control-Allow-Headers", "X-Requested-With,content-type, Authorization");
+//   next();
+// });
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -36,7 +37,8 @@ app.use("/proyectos", apiRoutesProyectos);
 app.use("/hye", apiRoutesHyE);
 app.use("/materiales", apiRoutesMateriales);
 app.use("/mo", apiRoutesMO);
-app.use(express.static(path.join(__dirname, 'public')));
+app.use("/transportes", apiRoutesTransportes);
+app.use(express.static(path.join(__dirname, 'frontend/build')));
 
 //Conexión a la base de datos
 mongoose.connect(config.database);

@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import { Glyphicon, Button, Modal } from 'react-bootstrap';
 import './App.css';
-import MaterialAdd from "./MaterialAdd";
-import MaterialEditForm from "./MaterialEdit"
+import TransporteAdd from "./TransporteAdd";
+import TransporteEditForm from "./TransporteEdit"
 
-class Material extends Component {
+class Transporte extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      materiales: [],
+      transportes: [],
       show: false,
       editId: "",
       unidad: "",
@@ -20,7 +20,7 @@ class Material extends Component {
     this.componentDidMount = this.componentDidMount.bind(this);
     this.handleClose = this.handleClose.bind(this);
     this.handleShow = this.handleShow.bind(this);
-    this.editMateriales = this.editMateriales.bind(this);
+    this.editTransportes = this.editTransportes.bind(this);
     this.udpateCosto = this.udpateCosto.bind(this);
     this.udpateDescripcion = this.udpateDescripcion.bind(this);
     this.udpateUnidades = this.udpateUnidades.bind(this);
@@ -48,7 +48,7 @@ class Material extends Component {
   }
 
   componentDidMount() {
-    fetch("/materiales")
+    fetch("/transportes")
       .then((res) => {
         if (res.status !== 200) {
           console.log("Error");
@@ -58,13 +58,13 @@ class Material extends Component {
       })
       .then((json) => {
         this.setState({
-          materiales: json
+          transportes: json
         });
       })
   }
 
-  deleteMaterial(id) {
-    fetch("/materiales/" + id, {
+  deleteTransporte(id) {
+    fetch("/transportes/" + id, {
       method: "DELETE"
     }).then((res) => {
       if (res.status !== 200) {
@@ -79,10 +79,10 @@ class Material extends Component {
       .then(this.componentDidMount);
   }
 
-  editMateriales(evt) {
+  editTransportes(evt) {
     let id = this.state.editId;
     evt.preventDefault();
-    fetch("/materiales/" + id, {
+    fetch("/transportes/" + id, {
       method: "PUT",
       body: JSON.stringify(this.state),
       headers: {
@@ -103,7 +103,7 @@ class Material extends Component {
 
   onAdd(evt) {
     evt.preventDefault();
-    fetch("/materiales", {
+    fetch("/transportes", {
       method: "POST",
       body: JSON.stringify(this.state),
       headers: {
@@ -123,22 +123,22 @@ class Material extends Component {
   }
 
   render() {
-    let materiales = this.state.materiales;
+    let transportes = this.state.transportes;
     let idEditar = this.state.editId;
     return (
-      <div className="Material container-fluid">
-        <h3 className="centerAlign">Materiales</h3>
-        <table className="table materialesTable">
+      <div className="Transporte container-fluid">
+        <h3 className="centerAlign">Transportes</h3>
+        <table className="table transportesTable">
           <thead>
             <tr><th>Descripción</th><th>Unidades</th><th>Costo Unitario</th><th className="textCenter">Editar</th><th className="textCenter">Borrar</th></tr>
           </thead>
           <tbody>
-            {materiales.map((mat) => <tr key={mat._id}>
+            {transportes.map((mat) => <tr key={mat._id}>
               <td>{mat.descripcion}</td>
               <td>{mat.unidad}</td>
               <td>{mat.costoUnit}</td>
               <td className="textCenter"><Button onClick={() => this.handleShow(mat._id)} bsStyle="info" bsSize="xsmall"><Glyphicon glyph="pencil" /></Button></td>
-              <td className="textCenter"><Button onClick={() => this.deleteMaterial(mat._id)} bsStyle="danger" bsSize="xsmall"><Glyphicon glyph="trash" /></Button></td>
+              <td className="textCenter"><Button onClick={() => this.deleteTransporte(mat._id)} bsStyle="danger" bsSize="xsmall"><Glyphicon glyph="trash" /></Button></td>
             </tr>)
             }
           </tbody>
@@ -149,17 +149,17 @@ class Material extends Component {
               <Modal.Title>Modal heading</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-              <MaterialEditForm idi={idEditar} udpateUni={this.udpateUnidades} udpateDes={this.udpateDescripcion} udpateCost={this.udpateCosto} editarM={this.editMateriales} />
+              <TransporteEditForm idi={idEditar} udpateUni={this.udpateUnidades} udpateDes={this.udpateDescripcion} udpateCost={this.udpateCosto} editarT={this.editTransportes} />
             </Modal.Body>
             <Modal.Footer>
               <Button onClick={this.handleClose}>Close</Button>
             </Modal.Footer>
           </Modal>
         </div>
-        <MaterialAdd udpateUni={this.udpateUnidades} udpateDes={this.udpateDescripcion} udpateCost={this.udpateCosto} onAdd={this.onAdd} />
+        <TransporteAdd udpateUni={this.udpateUnidades} udpateDes={this.udpateDescripcion} udpateCost={this.udpateCosto} onAdd={this.onAdd} />
       </div>
     );
   }
 }
 
-export default Material;
+export default Transporte;

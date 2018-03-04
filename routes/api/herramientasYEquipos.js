@@ -16,7 +16,7 @@ module.exports = function (app, express) {
       let hye = new HyE();
       hye.descripcion = req.body.descripcion;
       hye.unidad = req.body.unidad;
-      hye.costoUnit = req.body.precio;
+      hye.costoUnit = req.body.costoUnit;
 
       hye.save(function (err) {
         if (err) {
@@ -55,7 +55,7 @@ module.exports = function (app, express) {
         if (err) res.send(err);
         if (req.body.descripcion) hye.descripcion = req.body.descripcion;
         if (req.body.unidad) hye.unidad = req.body.unidad;
-        if (req.body.costoUnit) hye.precio = req.body.costoUnit;
+        if (req.body.costoUnit) hye.costoUnit = req.body.costoUnit;
 
         hye.save(function (err) {
           if (err) res.send(err);

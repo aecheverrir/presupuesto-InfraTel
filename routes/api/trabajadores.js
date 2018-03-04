@@ -13,7 +13,7 @@ module.exports = function (app, express) {
 
     .post(function (req, res) {
       let trabajador = new Mo();
-      trabajador.tipoDePersona = req.body.tipoDePersona;
+      trabajador.descripcion = req.body.descripcion;
       trabajador.unidad = req.body.unidad;
       trabajador.costoUnit = req.body.costoUnit;
 
@@ -52,9 +52,9 @@ module.exports = function (app, express) {
     .put(function (req, res) {
       Mo.findById(req.params.id_mo, function (err, trabajador) {
         if (err) res.send(err);
-        if (req.body.tipoDePersona) trabajador.tipoDePersona = req.body.tipoDePersona;
+        if (req.body.descripcion) trabajador.descripcion = req.body.descripcion;
         if (req.body.unidad) trabajador.unidad = req.body.unidad;
-        if (req.body.costo) trabajador.costo = req.body.costoUnit;
+        if (req.body.costoUnit) trabajador.costoUnit = req.body.costoUnit;
 
         trabajador.save(function (err) {
           if (err) res.send(err);
