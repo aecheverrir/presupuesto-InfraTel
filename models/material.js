@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const MaterialSchema = new Schema({
-  descripcion: {type: String, required: true, index: {unique: true}},
+  descripcion: {type: String, required: true},
   unidad: {type: String, required: true},
   costoUnit: {type: Number, required: true}
 });

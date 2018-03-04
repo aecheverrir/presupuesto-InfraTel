@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { FormGroup, ControlLabel, FormControl, Button } from 'react-bootstrap';
-import './App.css';
+import '../App.css';
 
 class MaterialAdd extends Component {
 

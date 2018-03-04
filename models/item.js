@@ -7,12 +7,12 @@ const Material = require("./materialItem");
 const Transporte = require("./transporteItem");
 
 const ItemSchema = new Schema ({
-  nombre: {type: String, required: true, index: {unique: true}},
-  codigo: {type: Number, required: true, index: {unique: true}},
-  unidad: {type: String, required: true},
-  cantidad: {type: Number, required: true},
-  valorUnitarioTotal: {type: Number, required: true},
-  valorTotal: {type: Number, required: true},
+  nombre: {type: String, required: false},
+  codigo: {type: Number, required: false},
+  unidad: {type: String, required: false},
+  cantidad: {type: Number, required: false},
+  valorUnitarioTotal: {type: Number, required: false},
+  valorTotal: {type: Number, required: false},
   hyes: [HyE],
   manosObra: [MO],
   materiales: [Material],

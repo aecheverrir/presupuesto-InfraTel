@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Glyphicon, Button, Modal } from 'react-bootstrap';
-import './App.css';
+import '../App.css';
 import HyEAdd from "./HerramientaYEquipoAdd";
 import HyEEditForm from "./HerramientaYEquipoEdit"
 

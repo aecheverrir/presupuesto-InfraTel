@@ -1,19 +1,20 @@
 import React, { Component } from 'react';
 import { FormGroup, ControlLabel, FormControl, Button } from 'react-bootstrap';
-import './App.css';
+import '../App.css';
 
-class ManoObraAdd extends Component {
+class TransporteAdd extends Component {
+
     render() {
         return (
-            <div className="MoAdd container-fluid">
-                <form className="form form-horizontal" id="addMoForm" onSubmit={this.props.onAdd}>
+            <div className="TransporteAdd container-fluid">
+                <form className="form form-horizontal" id="addTransporteForm" onSubmit={this.props.onAdd}>
                     <div className="row">
-                        <h3 className="centerAlign">Nuevo Trabajador</h3>
+                        <h3 className="centerAlign">Nuevo Transporte</h3>
                         <div className="col-md-12">
                             <FormGroup>
-                                <ControlLabel>Tipo de persona: </ControlLabel>
+                                <ControlLabel>Descripción: </ControlLabel>
                                 <FormControl
-                                    type="text" placeholder="Tipo de trabajador."
+                                    type="text" placeholder="Descripción del transporte."
                                     name="descripcion" onChange={this.props.udpateDes}
                                 />
                             </FormGroup>
@@ -22,7 +23,7 @@ class ManoObraAdd extends Component {
                             <FormGroup>
                                 <ControlLabel>Unidades: </ControlLabel>
                                 <FormControl
-                                    componentClass="textarea" placeholder="Unidades de jornada laboral."
+                                    componentClass="textarea" placeholder="Unidades del transporte."
                                     name="unidad" onChange={this.props.udpateUni}
                                 />
                             </FormGroup>
@@ -31,7 +32,7 @@ class ManoObraAdd extends Component {
                             <FormGroup>
                                 <ControlLabel>Costo Unitario: </ControlLabel>
                                 <FormControl
-                                    componentClass="textarea" placeholder="Costo unitario del trabajador."
+                                    componentClass="textarea" placeholder="Costo unitario del transporte."
                                     name="costoUnit" onChange={this.props.udpateCost}
                                 />
                             </FormGroup>
@@ -46,4 +47,4 @@ class ManoObraAdd extends Component {
     }
 }
 
-export default ManoObraAdd;
+export default TransporteAdd;

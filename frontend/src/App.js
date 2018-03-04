@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import { Navbar, Nav, NavItem, } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import './App.css';
-import Material from './Material';
-import ManoObra from "./ManoObra";
-import Transporte from "./Transporte";
-import HyE from "./HerramientaYEquipo";
+import Material from './Material/Material';
+import ManoObra from "./ManoObra/ManoObra";
+import Transporte from "./Transporte/Transporte";
+import HyE from "./HyE/HerramientaYEquipo";
+import Proyecto from "./Proyecto/Proyecto";
+
 //Experimento
 import {HashRouter,Switch,Route,Link} from "react-router-dom";
 
@@ -37,6 +39,7 @@ class App extends Component {
         <ManoObra />
         <Transporte />
         <HyE />
+        <Proyecto />
       </div>
     );
   }

@@ -4,8 +4,8 @@ const Schema = mongoose.Schema;
 const Item = require("./item");
 
 const ProyectoSchema = new Schema({
-  codigo: {type: Number, required: true, index: {unique: true}},
-  nombre: {type: String, required: true, index: {unique: true}},
+  codigo: {type: Number, required: true},
+  nombre: {type: String, required: true},
   subtotal: {type: Number, required: true},
   A: {type: Number, required: true},
   U: {type: Number, required: true},
