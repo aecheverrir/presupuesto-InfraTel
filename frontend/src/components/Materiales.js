@@ -26,7 +26,7 @@ render(){
     const todos = todoState.todos;
     return(
       <div className="col-md-12">
-      <h3 className="centerAlign">Todos</h3>
+      <h3 className="centerAlign">Materiales</h3>
       {!todos && todoState.isFetching &&
         <p>Loading todos....</p>
       }
@@ -36,11 +36,13 @@ render(){
       {todos && todos.length > 0 && !todoState.isFetching &&
       <table className="table booksTable">
       <thead>
-       <tr><th>Todo</th><th className="textCenter">Edit</th><th className="textCenter">Delete</th><th className="textCenter">View</th></tr>
+       <tr><th>Descripcion</th><th>Unidades</th><th>Costo Unitario</th><th className="textCenter">Editar</th><th className="textCenter">Borrar</th><th className="textCenter">View</th></tr>
       </thead>
       <tbody>
-        {todos.map((todo,i) => <tr key={i}>
-        <td>{todo.todoText}</td>
+        {todos.map((todo) => <tr key={todo._id}>
+        <td>{todo.descripcion}</td>
+        <td>{todo.unidad}</td>
+        <td>{todo.costoUnit}</td>
          <td className="textCenter"><Button onClick={() => this.showEditModal(todo)} bsStyle="info" bsSize="xsmall"><Glyphicon glyph="pencil" /></Button></td>
          <td className="textCenter"><Button onClick={() => this.showDeleteModal(todo)} bsStyle="danger" bsSize="xsmall"><Glyphicon glyph="trash" /></Button></td>
          <td className="textCenter"><Link to={`/${todo._id}`}>View Details</Link> </td>
