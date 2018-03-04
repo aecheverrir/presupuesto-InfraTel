@@ -16,7 +16,6 @@ module.exports = function (app, express) {
       material.descripcion = req.body.descripcion;
       material.unidad = req.body.unidad;
       material.costoUnit = req.body.costoUnit;
-
       material.save(function (err) {
         if (err) {
           if (err.code == 11000)
