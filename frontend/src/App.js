@@ -1,53 +1,26 @@
+// ./react-redux-client/src/App.js
 import React, { Component } from 'react';
-import './App.css';
-
+import { Provider } from 'react-redux';
+import { Router, browserHistory } from 'react-router';
+import PropTypes from 'prop-types';
+import { syncHistoryWithStore } from 'react-router-redux';
+import configureStore from './store/configureStore';
+import routes from './routes';
+const store = configureStore();
+const history = syncHistoryWithStore(browserHistory, store);
 class App extends Component {
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      materiales : []
-    };
-  }
-
-  componentDidMount(){
-    fetch("http://localhost:8080/materiales")
-    .then((res)=>{
-      if(res.status!==200){
-        console.log("Error");
-        console.log(res.status);
-      }
-      return res.json();
-    })
-    .then((json)=>{
-      this.setState({
-        materiales:json
-      });
-    })
-  }
-
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <div className="container-fluid">
-            <div className="row">
-              <p className="col-sm-2">s</p>
-              <h1 className="App-title col-sm-6 text-center">Presupuesto InfraTel</h1>
-              <nav className="col-sm-4 text-right">
-                Proyectos
-                  </nav>
-            </div>
-          </div>
-        </header>
+      <Provider store={store}>
         <div>
-        {this.state.materiales.map(
-          (f) => f.descripcion
-        )}
+          <Router history={history} routes={routes} />
         </div>
-      </div> 
+      </Provider>
     );
   }
 }
-
+App.propTypes = {
+  store: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired
+};
 export default App;
