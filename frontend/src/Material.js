@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Glyphicon, Button, Modal} from 'react-bootstrap';
+import { Glyphicon, Button, Modal } from 'react-bootstrap';
 import './App.css';
 import MaterialAdd from "./MaterialAdd";
 import MaterialEditForm from "./MaterialEdit"
@@ -17,6 +17,7 @@ class Material extends Component {
       costoUnit: 0
     };
 
+    this.componentDidMount = this.componentDidMount.bind(this);
     this.handleClose = this.handleClose.bind(this);
     this.handleShow = this.handleShow.bind(this);
     this.editMateriales = this.editMateriales.bind(this);
@@ -75,48 +76,51 @@ class Material extends Component {
       .then((json) => {
         alert(json.message);
       })
+      .then(this.componentDidMount);
   }
 
   editMateriales(evt) {
     let id = this.state.editId;
     evt.preventDefault();
-        fetch("http://localhost:8080/materiales/"+id, {
-            method: "PUT",
-            body: JSON.stringify(this.state),
-            headers: {
-                "Content-Type": "application/json"
-            }
-        }).then((res) => {
-            if (res.status !== 200) {
-                console.log("Error");
-                console.log(res.status);
-            }
-            return res.json();
-        })
-            .then((json) => {
-                alert(json.message);
-            })
+    fetch("http://localhost:8080/materiales/" + id, {
+      method: "PUT",
+      body: JSON.stringify(this.state),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    }).then((res) => {
+      if (res.status !== 200) {
+        console.log("Error");
+        console.log(res.status);
+      }
+      return res.json();
+    })
+      .then((json) => {
+        alert(json.message);
+      })
+      .then(this.componentDidMount);
   }
 
   onAdd(evt) {
     evt.preventDefault();
     fetch("http://localhost:8080/materiales", {
-        method: "POST",
-        body: JSON.stringify(this.state),
-        headers: {
-            "Content-Type": "application/json"
-        }
+      method: "POST",
+      body: JSON.stringify(this.state),
+      headers: {
+        "Content-Type": "application/json"
+      }
     }).then((res) => {
-        if (res.status !== 200) {
-            console.log("Error");
-            console.log(res.status);
-        }
-        return res.json();
+      if (res.status !== 200) {
+        console.log("Error");
+        console.log(res.status);
+      }
+      return res.json();
     })
-        .then((json) => {
-            alert(json.message);
-        })
-}
+      .then((json) => {
+        alert(json.message);
+      })
+      .then(this.componentDidMount);
+  }
 
   render() {
     let materiales = this.state.materiales;
@@ -145,14 +149,14 @@ class Material extends Component {
               <Modal.Title>Modal heading</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-              <MaterialEditForm idi={idEditar} udpateUni={this.udpateUnidades} udpateDes={this.udpateDescripcion} udpateCost={this.udpateCosto} editarM = {this.editMateriales}/>
+              <MaterialEditForm idi={idEditar} udpateUni={this.udpateUnidades} udpateDes={this.udpateDescripcion} udpateCost={this.udpateCosto} editarM={this.editMateriales} />
             </Modal.Body>
             <Modal.Footer>
               <Button onClick={this.handleClose}>Close</Button>
             </Modal.Footer>
           </Modal>
         </div>
-        <MaterialAdd udpateUni={this.udpateUnidades} udpateDes={this.udpateDescripcion} udpateCost={this.udpateCosto} onAdd = {this.onAdd}/>
+        <MaterialAdd udpateUni={this.udpateUnidades} udpateDes={this.udpateDescripcion} udpateCost={this.udpateCosto} onAdd={this.onAdd} />
       </div>
     );
   }
