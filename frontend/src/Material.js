@@ -28,6 +28,21 @@ class Material extends Component {
       })
   }
 
+  deleteMaterial(id) {
+    fetch("http://localhost:8080/materiales/"+id, {
+        method: "DELETE"
+    }).then((res) => {
+        if (res.status !== 200) {
+            console.log("Error");
+            console.log(res.status);
+        }
+        return res.json();
+    })
+        .then((json) => {
+            alert(json.message);
+        })
+}
+
   render() {
     let materiales = this.state.materiales;
     return (
@@ -43,7 +58,7 @@ class Material extends Component {
               <td>{mat.unidad}</td>
               <td>{mat.costoUnit}</td>
               <td className="textCenter"><Button onClick={() => this.showEditModal(mat)} bsStyle="info" bsSize="xsmall"><Glyphicon glyph="pencil" /></Button></td>
-              <td className="textCenter"><Button onClick={() => this.showDeleteModal(mat)} bsStyle="danger" bsSize="xsmall"><Glyphicon glyph="trash" /></Button></td>
+              <td className="textCenter"><Button onClick={() => this.deleteMaterial(mat._id)} bsStyle="danger" bsSize="xsmall"><Glyphicon glyph="trash" /></Button></td>
             </tr>)
             }
           </tbody>
