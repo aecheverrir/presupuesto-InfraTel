@@ -1,11 +1,11 @@
 // ./react-redux-client/src/actions/todoActions.js
-const apiUrl = "/api/";
+const apiUrl = "http://localhost:8080/materiales";
 export const toggleAddBook = () => {
   return {
     type: "TOGGLE_ADD_TODO"
   }
 }
-export const addNewTodo = (todo) => {console.log(todo)
+export const addNewTodo = (todo) => {console.log(todo);
   return (dispatch) => {
     dispatch(addNewTodoRequest(todo));
     return fetch(apiUrl, {
@@ -61,7 +61,7 @@ dispatch(fetchTodosRequest());
                 .then(response => {
                   if(response.ok){
                     response.json().then(data => {
-                      dispatch(fetchTodosSuccess(data.todos,data.message));
+                      dispatch(fetchTodosSuccess(data,data.message));
                     })
                   }
                   else{

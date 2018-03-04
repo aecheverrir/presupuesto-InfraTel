@@ -1,8 +1,8 @@
 
 // ./react-redux-client/src/containers/Todos.js
 import { connect } from 'react-redux';
-import * as todoActions from '../actions/todoActions';
-import Todos from '../components/Todos';
+import * as todoActions from '../actions/materialActions';
+import Todos from '../components/Materiales';
 // map state from store to props
 const mapStateToProps = (state,ownProps) => {
   return {
