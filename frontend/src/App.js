@@ -1,26 +1,37 @@
-// ./react-redux-client/src/App.js
 import React, { Component } from 'react';
-import { Provider } from 'react-redux';
-import { Router, browserHistory } from 'react-router';
-import PropTypes from 'prop-types';
-import { syncHistoryWithStore } from 'react-router-redux';
-import configureStore from './store/configureStore';
-import routes from './routes';
-const store = configureStore();
-const history = syncHistoryWithStore(browserHistory, store);
+import { Navbar, Nav, NavItem, MenuItem, Button } from "react-bootstrap";
+import { LinkContainer } from "react-router-bootstrap";
+import './App.css';
+import Material from './Material';
+
 class App extends Component {
+
   render() {
     return (
-      <Provider store={store}>
-        <div>
-          <Router history={history} routes={routes} />
-        </div>
-      </Provider>
+      <div className="App">
+        <header className="App-header">
+          <Navbar inverse collapseOnSelect className="customNav">
+            <Navbar.Header>
+              <Navbar.Brand>
+                <a href="/#">Mern Stack Todo App</a>
+              </Navbar.Brand>
+              <Navbar.Toggle />
+            </Navbar.Header>
+            <Navbar.Collapse>
+              <Nav>
+                <LinkContainer to={{ pathname: "/", query: {} }}>
+                  <NavItem eventKey={1}>Home</NavItem>
+                </LinkContainer>
+              </Nav>
+              <Nav pullRight>
+              </Nav>
+            </Navbar.Collapse>
+          </Navbar>
+        </header>
+        <Material />
+      </div>
     );
   }
 }
-App.propTypes = {
-  store: PropTypes.object.isRequired,
-  history: PropTypes.object.isRequired
-};
+
 export default App;
