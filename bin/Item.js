@@ -1,19 +1,15 @@
 import React, { Component } from 'react';
 import { Glyphicon, Button, Modal } from 'react-bootstrap';
 import '../App.css';
-import ProyectoAdd from "./ProyectoAdd";
-import ProyectoEditForm from "./ProyectoEdit";
-import Item from "../Item/Item";
+import ItemAdd from "./ItemAdd";
+import ItemEditForm from "./ItemEdit"
 
-
-class Proyecto extends Component {
+class Item extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      idProyecto: "",
-      viewItems: false,
-      proyectos: [],
+      items: [],
       show: false,
       editId: "",
       codigo: 0,
@@ -29,7 +25,7 @@ class Proyecto extends Component {
     this.componentDidMount = this.componentDidMount.bind(this);
     this.handleClose = this.handleClose.bind(this);
     this.handleShow = this.handleShow.bind(this);
-    this.editProyectos = this.editProyectos.bind(this);
+    this.editItems = this.editItems.bind(this);
     this.udpateCodigo = this.udpateCodigo.bind(this);
     this.udpateI = this.udpateI.bind(this);
     this.udpateIVA = this.udpateIVA.bind(this);
@@ -82,7 +78,7 @@ class Proyecto extends Component {
   }
 
   componentDidMount() {
-    fetch("/proyectos")
+    fetch("/items")
       .then((res) => {
         if (res.status !== 200) {
           console.log("Error");
@@ -92,13 +88,13 @@ class Proyecto extends Component {
       })
       .then((json) => {
         this.setState({
-          proyectos: json
+          items: json
         });
       })
   }
 
-  deleteProyecto(id) {
-    fetch("/proyectos/" + id, {
+  deleteItem(id) {
+    fetch("/items/" + id, {
       method: "DELETE"
     }).then((res) => {
       if (res.status !== 200) {
@@ -113,10 +109,10 @@ class Proyecto extends Component {
       .then(this.componentDidMount);
   }
 
-  editProyectos(evt) {
+  editItems(evt) {
     let id = this.state.editId;
     evt.preventDefault();
-    fetch("/proyectos/" + id, {
+    fetch("/items/" + id, {
       method: "PUT",
       body: JSON.stringify(this.state),
       headers: {
@@ -137,7 +133,7 @@ class Proyecto extends Component {
 
   onAdd(evt) {
     evt.preventDefault();
-    fetch("/proyectos", {
+    fetch("/items", {
       method: "POST",
       body: JSON.stringify(this.state),
       headers: {
@@ -156,37 +152,28 @@ class Proyecto extends Component {
       .then(this.componentDidMount);
   }
 
-  mostrarItems(id) {
-    this.setState({
-      viewItems: !(this.state.viewItems),
-      idProyecto: id
-    });
-  }
-
   render() {
-    let proyectos = this.state.proyectos;
+    let items = this.state.items;
     return (
-      <div className="Proyecto container-fluid">
-        <h3 className="centerAlign">Proyectos</h3>
-        <table className="table proyectosTable">
+      <div className="Item container-fluid">
+        <h3 className="centerAlign">Items</h3>
+        <table className="table itemsTable">
           <thead>
             <tr><th>Código</th>
               <th>Nombre</th>
               <th>Subtotal</th>
               <th>Total</th>
               <th className="textCenter">Editar</th>
-              <th className="textCenter">Borrar</th>
-              <th className="textCenter">Ver Items</th></tr>
+              <th className="textCenter">Borrar</th></tr>
           </thead>
           <tbody>
-            {proyectos.map((p) => <tr key={p._id}>
+            {items.map((p) => <tr key={p._id}>
               <td>{p.codigo}</td>
               <td>{p.nombre}</td>
               <td>{p.subtotal}</td>
               <td>{p.total}</td>
               <td className="textCenter"><Button onClick={() => this.handleShow(p._id)} bsStyle="info" bsSize="xsmall"><Glyphicon glyph="pencil" /></Button></td>
-              <td className="textCenter"><Button onClick={() => this.deleteProyecto(p._id)} bsStyle="danger" bsSize="xsmall"><Glyphicon glyph="trash" /></Button></td>
-              <td className="textCenter"><Button onClick={() => this.mostrarItems(p._id)} bsStyle="danger" bsSize="xsmall"><Glyphicon glyph="plus" /></Button></td>
+              <td className="textCenter"><Button onClick={() => this.deleteItem(p._id)} bsStyle="danger" bsSize="xsmall"><Glyphicon glyph="trash" /></Button></td>
             </tr>)
             }
           </tbody>
@@ -197,7 +184,7 @@ class Proyecto extends Component {
               <Modal.Title>Modal heading</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-              <ProyectoEditForm udpateCod={this.udpateCodigo}
+              <ItemEditForm udpateCod={this.udpateCodigo}
                 udpateNom={this.udpateNombre}
                 udpateTot={this.udpateTotal}
                 udpateA={this.udpateA}
@@ -205,21 +192,19 @@ class Proyecto extends Component {
                 udpateU={this.udpateU}
                 udpateIVA={this.udpateIVA}
                 udpateSub={this.udpateSubtotal}
-                editarM={this.editProyectos} />
+                editarM={this.editItems} />
             </Modal.Body>
             <Modal.Footer>
               <Button onClick={this.handleClose}>Close</Button>
             </Modal.Footer>
           </Modal>
         </div>
-        <ProyectoAdd udpateCod={this.udpateCodigo}
-            udpateNom={this.udpateNombre}
-            onAdd={this.onAdd} />
-        {this.state.viewItems && <Item idp={this.state.idProyecto} name = {this.props.nombre}/>
-        }
+        <ItemAdd udpateCod={this.udpateCodigo}
+          udpateNom={this.udpateNombre}
+          onAdd={this.onAdd} />
       </div>
     );
   }
 }
 
-export default Proyecto;
+export default Item;

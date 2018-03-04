@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { FormGroup, ControlLabel, FormControl, Button } from 'react-bootstrap';
 
-class ProyectoEditForm extends Component {
+class ItemEditForm extends Component {
 
     render() {
         return (
@@ -11,7 +11,7 @@ class ProyectoEditForm extends Component {
                         <FormGroup>
                             <ControlLabel>Código: </ControlLabel>
                             <FormControl
-                                type="text" placeholder="Código del proyecto."
+                                type="text" placeholder="Código del item."
                                 name="codigo" onChange={this.props.udpateCod}
                             />
                         </FormGroup>
@@ -20,62 +20,44 @@ class ProyectoEditForm extends Component {
                         <FormGroup>
                             <ControlLabel>Nombre: </ControlLabel>
                             <FormControl
-                                type="text" placeholder="Nombre del proyecto."
+                                type="text" placeholder="Nombre del item."
                                 name="nombre" onChange={this.props.udpateNom}
                             />
                         </FormGroup>
                     </div>
                     <div className="col-md-12">
                         <FormGroup>
-                            <ControlLabel>Subtotal: </ControlLabel>
+                            <ControlLabel>Unidad: </ControlLabel>
                             <FormControl
                                 type="text" placeholder="Subtotal."
-                                name="nombre" onChange={this.props.udpateSub}
+                                name="unidad" onChange={this.props.udpateUni}
                             />
                         </FormGroup>
                     </div>
                     <div className="col-md-12">
                         <FormGroup>
-                            <ControlLabel>A: </ControlLabel>
+                            <ControlLabel>Cantidad: </ControlLabel>
                             <FormControl
                                 type="text" placeholder="A."
-                                name="nombre" onChange={this.props.udpateA}
+                                name="cantidad" onChange={this.props.udpateCantidad}
                             />
                         </FormGroup>
                     </div>
                     <div className="col-md-12">
                         <FormGroup>
-                            <ControlLabel>I: </ControlLabel>
+                            <ControlLabel>Valor Unitario Total: </ControlLabel>
                             <FormControl
                                 type="text" placeholder="I."
-                                name="codigo" onChange={this.props.udpateI}
+                                name="valorUnitarioTotal" onChange={this.props.udpateVUT}
                             />
                         </FormGroup>
                     </div>
                     <div className="col-md-12">
                         <FormGroup>
-                            <ControlLabel>U: </ControlLabel>
+                            <ControlLabel>Valor Total: </ControlLabel>
                             <FormControl
                                 type="text" placeholder="U."
-                                name="nombre" onChange={this.props.udpateU}
-                            />
-                        </FormGroup>
-                    </div>
-                    <div className="col-md-12">
-                        <FormGroup>
-                            <ControlLabel>IVA: </ControlLabel>
-                            <FormControl
-                                type="text" placeholder="Valor IVA."
-                                name="codigo" onChange={this.props.udpateIVA}
-                            />
-                        </FormGroup>
-                    </div>
-                    <div className="col-md-12">
-                        <FormGroup>
-                            <ControlLabel>Total: </ControlLabel>
-                            <FormControl
-                                type="text" placeholder="Precio total del proyecto."
-                                name="codigo" onChange={this.props.udpateTot}
+                                name="valorTotal" onChange={this.props.udpateVT}
                             />
                         </FormGroup>
                     </div>
@@ -87,4 +69,4 @@ class ProyectoEditForm extends Component {
         );
     }
 }
-export default ProyectoEditForm;
+export default ItemEditForm;

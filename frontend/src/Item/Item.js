@@ -1,43 +1,33 @@
 import React, { Component } from 'react';
 import { Glyphicon, Button, Modal } from 'react-bootstrap';
 import '../App.css';
-import ProyectoAdd from "./ProyectoAdd";
-import ProyectoEditForm from "./ProyectoEdit";
-import Item from "../Item/Item";
+import ItemAdd from "./ItemAdd";
+import ItemEditForm from "./ItemEdit"
 
-
-class Proyecto extends Component {
+class Item extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      idProyecto: "",
-      viewItems: false,
-      proyectos: [],
-      show: false,
-      editId: "",
-      codigo: 0,
+      items: [],
+      codigo: "",
       nombre: "",
-      subtotal: 0,
-      A: 0,
-      U: 0,
-      I: 0,
-      IVA: 0,
-      total: 0
+      unidad: "",
+      cantidad: 0,
+      valorUnitarioTotal: 0,
+      valorTotal: 0
     };
 
     this.componentDidMount = this.componentDidMount.bind(this);
     this.handleClose = this.handleClose.bind(this);
     this.handleShow = this.handleShow.bind(this);
-    this.editProyectos = this.editProyectos.bind(this);
+    this.editItems = this.editItems.bind(this);
     this.udpateCodigo = this.udpateCodigo.bind(this);
-    this.udpateI = this.udpateI.bind(this);
-    this.udpateIVA = this.udpateIVA.bind(this);
     this.udpateNombre = this.udpateNombre.bind(this);
-    this.udpateSubtotal = this.udpateSubtotal.bind(this);
-    this.udpateTotal = this.udpateTotal.bind(this);
-    this.udpateU = this.udpateU.bind(this);
-    this.udpateA = this.udpateA.bind(this);
+    this.udpateUnidad = this.udpateUnidad.bind(this);
+    this.udpateCantidad = this.udpateCantidad.bind(this);
+    this.udpateVUT = this.udpateVUT.bind(this);
+    this.udpateVT = this.udpateVT.bind(this);
     this.onAdd = this.onAdd.bind(this);
   }
 
@@ -49,28 +39,20 @@ class Proyecto extends Component {
     this.setState({ nombre: event.target.value });
   }
 
-  udpateA(event) {
-    this.setState({ A: event.target.value });
+  udpateUnidad(event) {
+    this.setState({ unidad: event.target.value });
   }
 
-  udpateU(event) {
-    this.setState({ U: event.target.value });
+  udpateVUT(event) {
+    this.setState({ valorUnitarioTotal: event.target.value });
   }
 
-  udpateI(event) {
-    this.setState({ I: event.target.value });
+  udpateVT(event) {
+    this.setState({ valorTotal: event.target.value });
   }
 
-  udpateIVA(event) {
-    this.setState({ IVA: event.target.value });
-  }
-
-  udpateTotal(event) {
-    this.setState({ total: event.target.value });
-  }
-
-  udpateSubtotal(event) {
-    this.setState({ subtotal: event.target.value });
+  udpateCantidad(event) {
+    this.setState({ cantidad: event.target.value });
   }
 
   handleClose() {
@@ -82,7 +64,7 @@ class Proyecto extends Component {
   }
 
   componentDidMount() {
-    fetch("/proyectos")
+    fetch("proyectos/" + this.props.idp + "/items")
       .then((res) => {
         if (res.status !== 200) {
           console.log("Error");
@@ -92,13 +74,13 @@ class Proyecto extends Component {
       })
       .then((json) => {
         this.setState({
-          proyectos: json
+          items: json
         });
-      })
+      });
   }
 
-  deleteProyecto(id) {
-    fetch("/proyectos/" + id, {
+  deleteItem(id) {
+    fetch("proyectos/" + this.props.idp + "/items/" + id, {
       method: "DELETE"
     }).then((res) => {
       if (res.status !== 200) {
@@ -113,10 +95,10 @@ class Proyecto extends Component {
       .then(this.componentDidMount);
   }
 
-  editProyectos(evt) {
+  editItems(evt) {
     let id = this.state.editId;
     evt.preventDefault();
-    fetch("/proyectos/" + id, {
+    fetch("proyectos/" + this.props.idp + "/items/" + id, {
       method: "PUT",
       body: JSON.stringify(this.state),
       headers: {
@@ -137,7 +119,7 @@ class Proyecto extends Component {
 
   onAdd(evt) {
     evt.preventDefault();
-    fetch("/proyectos", {
+    fetch("proyectos/" + this.props.idp + "/items/", {
       method: "POST",
       body: JSON.stringify(this.state),
       headers: {
@@ -156,37 +138,32 @@ class Proyecto extends Component {
       .then(this.componentDidMount);
   }
 
-  mostrarItems(id) {
-    this.setState({
-      viewItems: !(this.state.viewItems),
-      idProyecto: id
-    });
-  }
-
   render() {
-    let proyectos = this.state.proyectos;
+    let items = this.state.items;
     return (
-      <div className="Proyecto container-fluid">
-        <h3 className="centerAlign">Proyectos</h3>
-        <table className="table proyectosTable">
+      <div className="Item container-fluid">
+        <h3 className="centerAlign">Items del Proyecto:</h3>
+        <table className="table itemsTable">
           <thead>
             <tr><th>Código</th>
               <th>Nombre</th>
-              <th>Subtotal</th>
-              <th>Total</th>
+              <th>Unidad</th>
+              <th>Cantidad</th>
+              <th>Valor Unitario Total</th>
+              <th>Valor Total</th>
               <th className="textCenter">Editar</th>
-              <th className="textCenter">Borrar</th>
-              <th className="textCenter">Ver Items</th></tr>
+              <th className="textCenter">Borrar</th></tr>
           </thead>
           <tbody>
-            {proyectos.map((p) => <tr key={p._id}>
+            {items.map((p) => <tr key={p._id}>
               <td>{p.codigo}</td>
               <td>{p.nombre}</td>
-              <td>{p.subtotal}</td>
-              <td>{p.total}</td>
+              <td>{p.unidad}</td>
+              <td>{p.cantidad}</td>
+              <td>{p.valorUnitarioTotal}</td>
+              <td>{p.valorTotal}</td>
               <td className="textCenter"><Button onClick={() => this.handleShow(p._id)} bsStyle="info" bsSize="xsmall"><Glyphicon glyph="pencil" /></Button></td>
-              <td className="textCenter"><Button onClick={() => this.deleteProyecto(p._id)} bsStyle="danger" bsSize="xsmall"><Glyphicon glyph="trash" /></Button></td>
-              <td className="textCenter"><Button onClick={() => this.mostrarItems(p._id)} bsStyle="danger" bsSize="xsmall"><Glyphicon glyph="plus" /></Button></td>
+              <td className="textCenter"><Button onClick={() => this.deleteItem(p._id)} bsStyle="danger" bsSize="xsmall"><Glyphicon glyph="trash" /></Button></td>
             </tr>)
             }
           </tbody>
@@ -197,29 +174,26 @@ class Proyecto extends Component {
               <Modal.Title>Modal heading</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-              <ProyectoEditForm udpateCod={this.udpateCodigo}
+              <ItemEditForm udpateCod={this.udpateCodigo}
                 udpateNom={this.udpateNombre}
-                udpateTot={this.udpateTotal}
-                udpateA={this.udpateA}
-                udpateI={this.udpateI}
-                udpateU={this.udpateU}
-                udpateIVA={this.udpateIVA}
-                udpateSub={this.udpateSubtotal}
-                editarM={this.editProyectos} />
+                udpateVT={this.udpateVT}
+                udpateVUT={this.udpateVUT}
+                udpateUni={this.udpateUnidad}
+                udpateCantidad={this.udpateCantidad}
+                editarM={this.editItems} />
             </Modal.Body>
             <Modal.Footer>
               <Button onClick={this.handleClose}>Close</Button>
             </Modal.Footer>
           </Modal>
         </div>
-        <ProyectoAdd udpateCod={this.udpateCodigo}
-            udpateNom={this.udpateNombre}
-            onAdd={this.onAdd} />
-        {this.state.viewItems && <Item idp={this.state.idProyecto} name = {this.props.nombre}/>
-        }
+        <ItemAdd udpateCod={this.udpateCodigo}
+          udpateNom={this.udpateNombre}
+          udpateUni={this.udpateUnidad}
+          onAdd={this.onAdd} />
       </div>
     );
   }
 }
 
-export default Proyecto;
+export default Item;
