@@ -23,6 +23,7 @@ class Material extends Component {
     this.udpateCosto = this.udpateCosto.bind(this);
     this.udpateDescripcion = this.udpateDescripcion.bind(this);
     this.udpateUnidades = this.udpateUnidades.bind(this);
+    this.onAdd = this.onAdd.bind(this);
   }
 
   udpateCosto(event) {
@@ -97,6 +98,26 @@ class Material extends Component {
             })
   }
 
+  onAdd(evt) {
+    evt.preventDefault();
+    fetch("http://localhost:8080/materiales", {
+        method: "POST",
+        body: JSON.stringify(this.state),
+        headers: {
+            "Content-Type": "application/json"
+        }
+    }).then((res) => {
+        if (res.status !== 200) {
+            console.log("Error");
+            console.log(res.status);
+        }
+        return res.json();
+    })
+        .then((json) => {
+            alert(json.message);
+        })
+}
+
   render() {
     let materiales = this.state.materiales;
     let idEditar = this.state.editId;
@@ -131,7 +152,7 @@ class Material extends Component {
             </Modal.Footer>
           </Modal>
         </div>
-        <MaterialAdd />
+        <MaterialAdd udpateUni={this.udpateUnidades} udpateDes={this.udpateDescripcion} udpateCost={this.udpateCosto} onAdd = {this.onAdd}/>
       </div>
     );
   }

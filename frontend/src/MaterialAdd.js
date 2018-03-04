@@ -4,55 +4,10 @@ import './App.css';
 
 class MaterialAdd extends Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            unidad: "",
-            descripcion: "",
-            costoUnit: 0
-        }
-        this.udpateCosto = this.udpateCosto.bind(this);
-        this.udpateDescripcion = this.udpateDescripcion.bind(this);
-        this.udpateUnidades = this.udpateUnidades.bind(this);
-        this.onAdd = this.onAdd.bind(this);
-    }
-
-    onAdd(evt) {
-        evt.preventDefault();
-        fetch("http://localhost:8080/materiales", {
-            method: "POST",
-            body: JSON.stringify(this.state),
-            headers: {
-                "Content-Type": "application/json"
-            }
-        }).then((res) => {
-            if (res.status !== 200) {
-                console.log("Error");
-                console.log(res.status);
-            }
-            return res.json();
-        })
-            .then((json) => {
-                alert(json.message);
-            })
-    }
-
-    udpateCosto(event) {
-        this.setState({ costoUnit: event.target.value });
-    }
-
-    udpateDescripcion(event) {
-        this.setState({ descripcion: event.target.value });
-    }
-
-    udpateUnidades(event) {
-        this.setState({ unidad: event.target.value });        
-    }
-
     render() {
         return (
             <div className="MaterialAdd container-fluid">
-                <form className="form form-horizontal" id="addMaterialForm" onSubmit={this.onAdd}>
+                <form className="form form-horizontal" id="addMaterialForm" onSubmit={this.props.onAdd}>
                     <div className="row">
                         <h3 className="centerAlign">Nuevo Material</h3>
                         <div className="col-md-12">
@@ -60,7 +15,7 @@ class MaterialAdd extends Component {
                                 <ControlLabel>Descripción: </ControlLabel>
                                 <FormControl
                                     type="text" placeholder="Descripción del material."
-                                    name="descripcion" onChange={this.udpateDescripcion}
+                                    name="descripcion" onChange={this.props.udpateDes}
                                 />
                             </FormGroup>
                         </div>
@@ -69,7 +24,7 @@ class MaterialAdd extends Component {
                                 <ControlLabel>Unidades: </ControlLabel>
                                 <FormControl
                                     componentClass="textarea" placeholder="Unidades del material."
-                                    name="unidad" onChange={this.udpateUnidades}
+                                    name="unidad" onChange={this.props.udpateUni}
                                 />
                             </FormGroup>
                         </div>
@@ -78,7 +33,7 @@ class MaterialAdd extends Component {
                                 <ControlLabel>Costo Unitario: </ControlLabel>
                                 <FormControl
                                     componentClass="textarea" placeholder="Costo unitario del material."
-                                    name="costoUnit" onChange={this.udpateCosto}
+                                    name="costoUnit" onChange={this.props.udpateCost}
                                 />
                             </FormGroup>
                         </div>
