@@ -46,8 +46,6 @@ export const addNewTodoRequestFailed = (error) => {
   }
 }
 
-export const addNewTodo = (todo) => {
-}
 export const deleteTodo = (todo) => {
 }
 export const editTodo = (todo) => {

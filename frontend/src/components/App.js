@@ -32,6 +32,7 @@ export default class App extends React.Component {
 
 
 render(){
+    const appState = this.props.mappedAppState;
     return(
       <div>
       <Navbar inverse  collapseOnSelect className="customNav">

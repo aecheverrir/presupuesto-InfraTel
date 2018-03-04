@@ -2,6 +2,7 @@
 import { connect } from 'react-redux';
 import * as appActions from '../actions/appActions';
 import App from '../components/App';
+import * as todoActions from '../actions/todoActions';
 // map state from store to props
 const mapStateToProps = (state) => {
   return {
