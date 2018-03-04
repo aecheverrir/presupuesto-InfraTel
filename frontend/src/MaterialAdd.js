@@ -46,7 +46,7 @@ class MaterialAdd extends Component {
     }
 
     udpateUnidades(event) {
-        this.setState({ unidad: event.target.value });
+        this.setState({ unidad: event.target.value });        
     }
 
     render() {
