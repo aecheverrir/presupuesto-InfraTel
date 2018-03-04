@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Glyphicon, Button, Modal } from 'react-bootstrap';
 import '../App.css';
 import MaterialAdd from "./MaterialAdd";
-import MaterialEditForm from "./MaterialEdit"
+import MaterialEditForm from "./MaterialEdit";
 
 class Material extends Component {
 
