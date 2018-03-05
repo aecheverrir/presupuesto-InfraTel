@@ -8,4 +8,4 @@ const MaterialISchema = new Schema({
   valorUnit: {type: Number, required: false},
   material: {type: Schema.Types.ObjectId, ref: "Mat"}
 });
-module.exports = MaterialISchema;;
+module.exports = MaterialISchema;

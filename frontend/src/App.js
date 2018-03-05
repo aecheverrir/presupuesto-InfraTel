@@ -1,10 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import { Navbar, Nav, NavItem, } from "react-bootstrap";
-import { LinkContainer } from "react-router-bootstrap";
-import './App.css';
-
-//Experimento
-import {HashRouter,Switch,Route,Link} from "react-router-dom";
+import "./App.css";
 
 class App extends Component {
 
@@ -21,9 +17,6 @@ class App extends Component {
             </Navbar.Header>
             <Navbar.Collapse>
               <Nav>
-                {/*<LinkContainer to="/proyectos">
-                  <NavItem eventKey={1}>Proyectos</NavItem>
-                </LinkContainer>*/}
                 <NavItem eventKey={1} href="/proyectos">Proyectos</NavItem>
                 <NavItem eventKey={2} href="/materiales">Materiales</NavItem>
                 <NavItem eventKey={3} href="/mo">Mano De Obra</NavItem>
@@ -35,11 +28,6 @@ class App extends Component {
             </Navbar.Collapse>
           </Navbar>
         </header>
-        {/*<Material />
-        <ManoObra />
-        <Transporte />
-        <HyE />
-        <Proyecto />*/}
       </div>
     );
   }

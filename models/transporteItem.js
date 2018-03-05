@@ -8,4 +8,4 @@ const TransISchema = new Schema({
   valorUnit: {type: Number, required: false},
   transporte: {type: Schema.Types.ObjectId, ref: "Trans"}
 });
-module.exports = TransISchema;;
+module.exports = TransISchema;

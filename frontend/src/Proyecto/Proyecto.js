@@ -213,8 +213,8 @@ class Proyecto extends Component {
           </Modal>
         </div>
         <ProyectoAdd udpateCod={this.udpateCodigo}
-            udpateNom={this.udpateNombre}
-            onAdd={this.onAdd} />
+          udpateNom={this.udpateNombre}
+          onAdd={this.onAdd} />
         {this.state.viewItems && <Item idp={this.state.idProyecto} name = {this.props.nombre}/>
         }
       </div>

@@ -8,4 +8,4 @@ const MOISchema = new Schema({
   valorUnit: {type: Number, required: false},
   manoObra: {type: Schema.Types.ObjectId, ref: "MO"}
 });
-module.exports = MOISchema;;
+module.exports = MOISchema;

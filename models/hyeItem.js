@@ -8,4 +8,4 @@ const HyEISchema = new Schema({
   valorUnit: {type: Number, required: false},
   herrramientasYEquipos: {type: Schema.Types.ObjectId, ref: "HyE"}
 });
-module.exports = HyEISchema;;
+module.exports = HyEISchema;
