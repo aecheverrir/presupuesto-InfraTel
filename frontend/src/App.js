@@ -2,11 +2,6 @@ import React, { Component } from 'react';
 import { Navbar, Nav, NavItem, } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import './App.css';
-import Material from './Material/Material';
-import ManoObra from "./ManoObra/ManoObra";
-import Transporte from "./Transporte/Transporte";
-import HyE from "./HyE/HerramientaYEquipo";
-import Proyecto from "./Proyecto/Proyecto";
 
 //Experimento
 import {HashRouter,Switch,Route,Link} from "react-router-dom";
@@ -26,20 +21,25 @@ class App extends Component {
             </Navbar.Header>
             <Navbar.Collapse>
               <Nav>
-                <LinkContainer to={{ pathname: "/materiales", query: {} }}>
-                  <NavItem eventKey={1}>Materiales</NavItem>
-                </LinkContainer>
+                {/*<LinkContainer to="/proyectos">
+                  <NavItem eventKey={1}>Proyectos</NavItem>
+                </LinkContainer>*/}
+                <NavItem eventKey={1} href="/proyectos">Proyectos</NavItem>
+                <NavItem eventKey={2} href="/materiales">Materiales</NavItem>
+                <NavItem eventKey={3} href="/mo">Mano De Obra</NavItem>
+                <NavItem eventKey={4} href="/transportes">Transporte</NavItem>
+                <NavItem eventKey={5} href="/hye">Herramientas Y Equipos</NavItem>
               </Nav>
               <Nav pullRight>
               </Nav>
             </Navbar.Collapse>
           </Navbar>
         </header>
-        <Material />
+        {/*<Material />
         <ManoObra />
         <Transporte />
         <HyE />
-        <Proyecto />
+        <Proyecto />*/}
       </div>
     );
   }
