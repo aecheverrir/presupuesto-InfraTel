@@ -5,7 +5,7 @@ Firstly, clone the app in your local machine for editing. (Make sure `npm` is is
 Before installing dependcies, install nodemon.
 `npm install -g nodemon`
 
-Now, to install the proyect dependencies, rund the following command (make sure you are in prespuesto-InfraTel folder)
+Now, to install the proyect dependencies, run the following command (make sure you are in prespuesto-InfraTel folder)
 `npm install`
 
 After this, we have to install the frontend dependicies.
