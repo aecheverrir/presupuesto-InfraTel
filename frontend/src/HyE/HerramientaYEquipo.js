@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import { Glyphicon, Button, Modal } from 'react-bootstrap';
-import '../App.css';
+import React, { Component } from "react";
+import { Glyphicon, Button, Modal } from "react-bootstrap";
+import "../App.css";
 import HyEAdd from "./HerramientaYEquipoAdd";
-import HyEEditForm from "./HerramientaYEquipoEdit"
+import HyEEditForm from "./HerramientaYEquipoEdit";
 
 class HyE extends Component {
 
@@ -60,7 +60,7 @@ class HyE extends Component {
         this.setState({
           hyes: json
         });
-      })
+      });
   }
 
   deleteHyE(id) {
