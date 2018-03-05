@@ -1,5 +1,5 @@
 let Conf = {
-  "database": "mongodb://localhost:27017/presupuesto-infratel-test",
+  "database": "mongodb://Infratel:Infratel@ds253918.mlab.com:53918/infratel",
 };
 
 module.exports = Conf;
