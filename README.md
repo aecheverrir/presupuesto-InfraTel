@@ -18,6 +18,10 @@ To run the app, type the following command in prespuesto-InfraTel folder.
 `npm start`
 
 You can now view the app in the following link:
-http://localchost:8080
+http://localchost:3000
+**me corrio en el 3000, no el 8080**
 
 **Note: It is only necessary to run `npm start` one time, as nodemon resarts the server when a file is changed and saved**
+
+
+* Agregar link de despliegue a heroku *
